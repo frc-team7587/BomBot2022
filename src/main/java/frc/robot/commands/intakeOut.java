@@ -15,28 +15,30 @@ import frc.robot.subsystems.Intake;
 public class intakeOut extends WaitUntilCommand {
 
   private Intake m_intake;
+  private int count;
 
-  public intakeOut(Intake subsystem, BooleanSupplier btnState) {
+  public intakeOut(Intake intake, BooleanSupplier btnState) {
     super(btnState);
-    addRequirements(subsystem);
-    m_intake = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(intake);
+    m_intake = intake;
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(++count > 25){
+      System.out.println("intake Out....");
+      count=0;
+    }
     m_intake.out();
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("intake Out stopped");
     m_intake.stop();
   }
 }

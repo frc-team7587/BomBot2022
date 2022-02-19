@@ -31,23 +31,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    // m_chooser.addOption("My Auto", kCustomAuto);
-    // SmartDashboard.putData("Auto choices", m_chooser);
-    
-    /* // CameraServer.startAutomaticCapture();
-    m_chooser.addOption("Spin 1 sec 25%", "AutoSpin()");
-    m_chooser.addOption("Forward 1 sec 25%", "AutoForward()");
-    m_chooser.addOption("Release balls", "ReleaseBalls()");
-    SmartDashboard.putData("AutoChoices", m_chooser);
-     */
-
     m_robotContainer = new RobotContainer();
   }
-
-/*   public static RobotContainer getRoCon() {
-    return m_robotContainer;
-  } */
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
