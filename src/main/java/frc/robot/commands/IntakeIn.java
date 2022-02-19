@@ -13,33 +13,33 @@ import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.subsystems.Intake;
 
 public class IntakeIn extends WaitUntilCommand {
-  /**
-   * Creates a new TakeIn.
-   */
 
   private Intake m_intake;
+  private int count;
 
-  public IntakeIn(Intake subsystem, BooleanSupplier btnState) {
+  public IntakeIn(Intake intake, BooleanSupplier btnState) {
     super(btnState);
-    addRequirements(subsystem);
-    m_intake = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(intake);
+    m_intake = intake;
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(++count > 25){
+      System.out.println("intake In....");
+      count=0;
+    }
     m_intake.in();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("intake In stopped");
     m_intake.stop();
   }
 }
