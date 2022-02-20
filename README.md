@@ -1,3 +1,3 @@
-# proto-bot
+# BomBot2022
 
-This is a baseline FRC robotics project for prototype testing.
+Robot project for FRC 2022.
