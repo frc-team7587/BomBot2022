@@ -5,12 +5,12 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.subsystems.Intake;
 
-public class IntakeIn extends WaitUntilCommand {
+public class IntakeOut extends WaitUntilCommand {
 
   private Intake m_intake;
   private int count;
 
-  public IntakeIn(Intake intake, BooleanSupplier btnState) {
+  public IntakeOut(Intake intake, BooleanSupplier btnState) {
     super(btnState);
     addRequirements(intake);
     m_intake = intake;
@@ -23,16 +23,15 @@ public class IntakeIn extends WaitUntilCommand {
   @Override
   public void execute() {
     if(++count > 25){
-      System.out.println("intake In....");
+      System.out.println("intake Out....");
       count=0;
     }
-    m_intake.in();
+    m_intake.out();
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("intake In stopped");
+    System.out.println("intake Out stopped");
     m_intake.stop();
   }
 }
