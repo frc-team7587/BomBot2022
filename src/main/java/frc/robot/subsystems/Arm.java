@@ -28,10 +28,10 @@ public class Arm extends SubsystemBase {
         
         m_spark.restoreFactoryDefaults();
 
-        m_spark.enableSoftLimit(SoftLimitDirection.kForward, true);
-        m_spark.enableSoftLimit(SoftLimitDirection.kReverse, true);
-        m_spark.setSoftLimit(SoftLimitDirection.kForward, ARM_SOFT_LIMIT_FWD);
-        m_spark.setSoftLimit(SoftLimitDirection.kReverse, ARM_SOFT_LIMIT_BKW);
+        // m_spark.enableSoftLimit(SoftLimitDirection.kForward, true);
+        // m_spark.enableSoftLimit(SoftLimitDirection.kReverse, true);
+        // m_spark.setSoftLimit(SoftLimitDirection.kForward, ARM_SOFT_LIMIT_FWD);
+        // m_spark.setSoftLimit(SoftLimitDirection.kReverse, ARM_SOFT_LIMIT_BKW);
     }
 
     @Override
