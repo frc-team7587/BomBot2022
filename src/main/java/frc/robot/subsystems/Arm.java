@@ -14,11 +14,11 @@ public class Arm extends SubsystemBase {
     private final CANSparkMax m_spark = new CANSparkMax(ARM_SPARK_ID, MotorType.kBrushless);
 
     public void raise() {
-        m_spark.set(-ARM_MAX_SPEED);
+        m_spark.set(ARM_MAX_SPEED);
     }
 
     public void lower() {
-        m_spark.set(ARM_MAX_SPEED * 0.5);
+        m_spark.set(-ARM_MAX_SPEED * 0.05);
     }
 
     public void stop() {
@@ -26,9 +26,9 @@ public class Arm extends SubsystemBase {
     }
 
     public void reset() {
-
+        System.out.println("------ resetting sparkmax");
         m_spark.restoreFactoryDefaults();
-        m_spark.setIdleMode(IdleMode.kBrake);
+        m_spark.setIdleMode(IdleMode.kCoast);
         m_spark.burnFlash();
 
         // m_spark.enableSoftLimit(SoftLimitDirection.kForward, true);

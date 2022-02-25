@@ -2,6 +2,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.subsystems.*;
+import static frc.robot.Constants.*;
+
 
 public class ArmDown extends CommandBase {
   private Arm m_arm;
@@ -20,7 +22,7 @@ public class ArmDown extends CommandBase {
   @Override
   public void execute() {
     if(++count > 25){
-      System.out.println("armDown....");
+      System.out.println("armDown...."  + ARM_MAX_SPEED);
       count=0;
     }
     

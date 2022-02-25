@@ -11,7 +11,7 @@ import static frc.robot.Constants.*;
 
 public class RobotContainer {
 
-    private final DriveTrain m_drive = new DriveTrain();
+    // private final DriveTrain m_drive = new DriveTrain();
     private final Arm m_arm = new Arm();
     private final Intake m_intake = new Intake();
     
@@ -22,34 +22,34 @@ public class RobotContainer {
 
         configureButtonBindings();
 
-        m_drive.setDefaultCommand(
-            new RunCommand(
-                () -> m_drive.drive(
-                    DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
-                    DRIVE_SPEED_MULTIPLIER * 0.75 * -logi.getTwist() * Math.abs(logi.getThrottle())
-                    ),
-                m_drive)
-            );  
+        // m_drive.setDefaultCommand(
+        //     new RunCommand(
+        //         () -> m_drive.drive(
+        //             DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
+        //             DRIVE_SPEED_MULTIPLIER * 0.75 * -logi.getTwist() * Math.abs(logi.getThrottle())
+        //             ),
+        //         m_drive)
+        //     );  
         
-        m_arm.reset();
+        // m_arm.reset();
 
     }
 
     private void configureButtonBindings() {
 
         // Intake 
-        final JoystickButton btnIn = new JoystickButton(xbox, Button.kLeftBumper.value);
-            btnIn.whenPressed( new IntakeIn(m_intake, () -> !btnIn.get()) );
+        new JoystickButton(xbox, Button.kLeftBumper.value)
+             .whileHeld( new IntakeIn(m_intake) );
 
-        final JoystickButton btnOut = new JoystickButton(xbox, Button.kRightBumper.value);
-            btnIn.whenPressed( new IntakeIn(m_intake, () -> !btnOut.get()) );
+        new JoystickButton(xbox, Button.kRightBumper.value)
+            .whileHeld( new IntakeOut(m_intake) );
 
         // Arm
        new JoystickButton(xbox, Button.kY.value) // Y button
-            .whileHeld(new ArmDown(m_arm));
+            .whileHeld(new ArmUp(m_arm));
 
        new JoystickButton(xbox, Button.kB.value)   // B button
-           .whileHeld(new ArmUp(m_arm));
+           .whileHeld(new ArmDown(m_arm));
 
     }
 

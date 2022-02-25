@@ -5,13 +5,12 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.subsystems.Intake;
 
-public class IntakeOut extends WaitUntilCommand {
+public class IntakeOut extends CommandBase {
 
   private Intake m_intake;
   private int count;
 
-  public IntakeOut(Intake intake, BooleanSupplier btnState) {
-    super(btnState);
+  public IntakeOut(Intake intake) {
     addRequirements(intake);
     m_intake = intake;
   }

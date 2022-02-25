@@ -17,7 +17,7 @@ public class Constants {
      // Performance constants
     public static final double DRIVE_SPEED_MULTIPLIER = 0.75;   // to be verified
     public static final double INTAKE_MAX_SPEED = 0.45;         // tested, ok
-    public static final double ARM_MAX_SPEED = 0.5;             // to be tested on assembled arm
+    public static final double ARM_MAX_SPEED = 1.0;             // to be tested on assembled arm
 
     // Arm soft limits (to be tested)
     // public static final float ARM_SOFT_LIMIT_FWD = 15;
