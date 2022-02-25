@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 
 import static frc.robot.Constants.*;
@@ -17,7 +18,7 @@ public class Arm extends SubsystemBase {
     }
 
     public void lower() {
-        m_spark.set(ARM_MAX_SPEED);
+        m_spark.set(ARM_MAX_SPEED * 0.5);
     }
 
     public void stop() {
@@ -25,8 +26,10 @@ public class Arm extends SubsystemBase {
     }
 
     public void reset() {
-        
+
         m_spark.restoreFactoryDefaults();
+        m_spark.setIdleMode(IdleMode.kBrake);
+        m_spark.burnFlash();
 
         // m_spark.enableSoftLimit(SoftLimitDirection.kForward, true);
         // m_spark.enableSoftLimit(SoftLimitDirection.kReverse, true);

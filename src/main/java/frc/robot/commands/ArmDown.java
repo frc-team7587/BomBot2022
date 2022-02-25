@@ -1,16 +1,13 @@
 package frc.robot.commands;
 
-import java.util.function.BooleanSupplier;
-
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.subsystems.*;
 
-public class ArmDown extends WaitUntilCommand {
+public class ArmDown extends CommandBase {
   private Arm m_arm;
   private int count;
 
-  public ArmDown(Arm subsystem, BooleanSupplier btnState) {
-    super(btnState);
+  public ArmDown(Arm subsystem) {
     addRequirements(subsystem);
     m_arm = subsystem;
   }

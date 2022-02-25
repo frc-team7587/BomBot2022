@@ -45,11 +45,11 @@ public class RobotContainer {
             btnIn.whenPressed( new IntakeIn(m_intake, () -> !btnOut.get()) );
 
         // Arm
-       final JoystickButton btnArmDown = new JoystickButton(xbox, Button.kY.value); // Y button
-           btnArmDown.whenPressed( new ArmDown(m_arm, () -> !btnArmDown.get()) );
+       new JoystickButton(xbox, Button.kY.value) // Y button
+            .whileHeld(new ArmDown(m_arm));
 
-       final JoystickButton btnArmUp = new JoystickButton(xbox, Button.kB.value);   // B button
-           btnArmUp.whenPressed( new ArmUp(m_arm, () -> !btnArmUp.get()) );
+       new JoystickButton(xbox, Button.kB.value)   // B button
+           .whileHeld(new ArmUp(m_arm));
 
     }
 
