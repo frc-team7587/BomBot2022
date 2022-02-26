@@ -52,19 +52,19 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        // Intake
-        final JoystickButton btnIn = new JoystickButton(xbox, Button.kLeftBumper.value);
-        btnIn.whenPressed(new IntakeIn(m_intake, () -> !btnIn.get()));
+        // Intake 
+        new JoystickButton(xbox, Button.kLeftBumper.value)
+             .whileHeld( new IntakeIn(m_intake) );
 
-        final JoystickButton btnOut = new JoystickButton(xbox, Button.kRightBumper.value);
-        btnIn.whenPressed(new IntakeIn(m_intake, () -> !btnOut.get()));
+        new JoystickButton(xbox, Button.kRightBumper.value)
+            .whileHeld( new IntakeOut(m_intake) );
 
         // Arm
-        final JoystickButton btnArmDown = new JoystickButton(xbox, Button.kY.value); // Y button
-        btnArmDown.whenPressed(new ArmDown(m_arm, () -> !btnArmDown.get()));
+       new JoystickButton(xbox, Button.kY.value) // Y button
+            .whileHeld(new ArmUp(m_arm));
 
-        final JoystickButton btnArmUp = new JoystickButton(xbox, Button.kB.value); // B button
-        btnArmUp.whenPressed(new ArmUp(m_arm, () -> !btnArmUp.get()));
+       new JoystickButton(xbox, Button.kB.value)   // B button
+           .whileHeld(new ArmDown(m_arm));
 
     }
 
