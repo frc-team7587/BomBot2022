@@ -21,10 +21,6 @@ public class ArmDown extends CommandBase {
 
   @Override
   public void execute() {
-    if(++count > 25){
-      System.out.println("armDown...."  + ARM_MAX_SPEED);
-      count=0;
-    }
     
     m_arm.lower();
   }

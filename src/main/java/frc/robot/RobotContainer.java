@@ -11,7 +11,7 @@ import static frc.robot.Constants.*;
 
 public class RobotContainer {
 
-    // private final DriveTrain m_drive = new DriveTrain();
+    private final DriveTrain m_drive = new DriveTrain();
     private final Arm m_arm = new Arm();
     private final Intake m_intake = new Intake();
     
@@ -22,16 +22,20 @@ public class RobotContainer {
 
         configureButtonBindings();
 
-        // m_drive.setDefaultCommand(
-        //     new RunCommand(
-        //         () -> m_drive.drive(
-        //             DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
-        //             DRIVE_SPEED_MULTIPLIER * 0.75 * -logi.getTwist() * Math.abs(logi.getThrottle())
-        //             ),
-        //         m_drive)
-        //     );  
+        m_drive.setDefaultCommand(
+            new RunCommand(
+                () -> m_drive.drive(
+                    DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
+                    DRIVE_SPEED_MULTIPLIER * 0.75 * -logi.getTwist() * logi.getThrottle()
+                    ),
+                m_drive)
+            );  
         
 
+    }
+
+    public Joystick getJoyStick(){
+            return this.logi;
     }
 
     private void configureButtonBindings() {

@@ -17,11 +17,27 @@ public class Arm extends SubsystemBase {
 
     TalonSRX m_arm = new TalonSRX(ARM_TALON_ID);
 
+    public Arm(){
+        
+        // m_arm.configFactoryDefault();
+    }
+    private int count=0;
+    private int cycles=0;
     public void raise() {
-        m_arm.set(ControlMode.PercentOutput, -ARM_MAX_SPEED);    
+        if(++count > 20){
+            System.out.println("armUP...." + ARM_UP_SPEED + "[" + ++cycles + "]");
+            count=0;
+          }
+      
+        m_arm.set(ControlMode.PercentOutput, ARM_UP_SPEED);     // up!
     }
     public void lower() {
-        m_arm.set(ControlMode.PercentOutput, ARM_MAX_SPEED *.3);    
+        if(++count > 20){
+            System.out.println("arm DOWN...." + ARM_DOWN_SPEED);
+            count=0;
+          }
+
+        m_arm.set(ControlMode.PercentOutput, -ARM_DOWN_SPEED);    // downn
     }
 
     public void stop() {
@@ -32,4 +48,7 @@ public class Arm extends SubsystemBase {
     public void periodic() {
 
     }
+
+    
+
 }
