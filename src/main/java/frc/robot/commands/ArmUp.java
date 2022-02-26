@@ -8,7 +8,7 @@ import frc.robot.subsystems.*;
 public class ArmUp extends CommandBase {
   
   private Arm m_arm;
-  private int count;
+  private int count, cycles;
 
   public ArmUp(Arm subsystem) {
     addRequirements(subsystem);
@@ -17,13 +17,24 @@ public class ArmUp extends CommandBase {
 
   @Override
   public void initialize() {
-    
+    count = 0;
+    cycles = 0;
   }
 
   @Override
   public void execute() {
-    
+    if( (++count)%25==0){
+      cycles++;
+      System.out.println("arm UP cycles " + cycles + " [" + ++count + "]");
+    }
     m_arm.raise();
+
+    // if(cycles < ARM_UP_MAX_CYCLES){
+    //   m_arm.raise();
+    // }else{
+    //   m_arm.stop();
+    // }
+    
   }
 
   @Override
@@ -31,5 +42,7 @@ public class ArmUp extends CommandBase {
     System.out.println("armUp stopped");
     m_arm.stop();
   }
+
+
 
 }

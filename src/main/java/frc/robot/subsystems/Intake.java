@@ -16,7 +16,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void out() {
-    intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED);
+    intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED * 1.5);
   }
 
   public void stop() {
