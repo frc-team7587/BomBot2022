@@ -2,34 +2,27 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMax.SoftLimitDirection;
 
 import static frc.robot.Constants.*;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
     
-    // private final CANSparkMax m_spark = new CANSparkMax(ARM_SPARK_ID, MotorType.kBrushless);
+    private final TalonSRX m_arm = new TalonSRX(ARM_TALON_ID);
 
-    TalonSRX m_arm = new TalonSRX(ARM_TALON_ID);
-
+    public Arm(){
+        m_arm.configFactoryDefault();
+    }
+    
     public void raise() {
-        m_arm.set(ControlMode.PercentOutput, -ARM_MAX_SPEED);    
+        double speed = SmartDashboard.getNumber("Arm-UP", ARM_UP_SPEED);
+        m_arm.set(ControlMode.PercentOutput, -speed);    
     }
     public void lower() {
-        m_arm.set(ControlMode.PercentOutput, ARM_MAX_SPEED *.3);    
+        double speed = SmartDashboard.getNumber("Arm-DOWN", ARM_DOWN_SPEED);
+        m_arm.set(ControlMode.PercentOutput, speed);
     }
 
-    public void stop() {
-        m_arm.set(ControlMode.PercentOutput, 0);    
-    }
-
-    @Override
-    public void periodic() {
-
-    }
 }
