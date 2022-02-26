@@ -7,8 +7,8 @@ public class Constants {
     public static final int DRIVE_VICTOR_LEFT2 = 2;
     public static final int DRIVE_VICTOR_RIGHT1 = 1;
     public static final int DRIVE_VICTOR_RIGHT2 = 3;
-    public static final int INTAKE_TALON_ID = 4;
-    public static final int ARM_SPARK_ID = 5;
+    public static final int ARM_TALON_ID = 4;
+    public static final int INTAKE_TALON_ID = 5;
 
     // Control ports
     public static final int XBOX_CTRL_PORT = 0;

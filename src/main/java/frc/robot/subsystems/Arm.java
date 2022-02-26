@@ -15,7 +15,7 @@ public class Arm extends SubsystemBase {
     
     // private final CANSparkMax m_spark = new CANSparkMax(ARM_SPARK_ID, MotorType.kBrushless);
 
-    TalonSRX m_arm = new TalonSRX(INTAKE_TALON_ID);
+    TalonSRX m_arm = new TalonSRX(ARM_TALON_ID);
 
     public void raise() {
         m_arm.set(ControlMode.PercentOutput, -ARM_MAX_SPEED);    
