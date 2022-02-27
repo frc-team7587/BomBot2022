@@ -14,6 +14,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    // System.out.println("throttle: " + m_robotContainer.getJoyStick().getThrottle());
     CommandScheduler.getInstance().run();
   }
 

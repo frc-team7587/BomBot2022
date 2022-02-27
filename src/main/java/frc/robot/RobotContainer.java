@@ -43,12 +43,19 @@ public class RobotContainer {
         configureButtonBindings();
 
         m_drive.setDefaultCommand(
-                new RunCommand(
-                        () -> m_drive.drive(
-                                DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
-                                DRIVE_SPEED_MULTIPLIER * 0.75 * -logi.getTwist() * Math.abs(logi.getThrottle())),
-                        m_drive));
+            new RunCommand(
+                () -> m_drive.drive(
+                    DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
+                    DRIVE_SPEED_MULTIPLIER * 0.75 * -logi.getTwist() * logi.getThrottle()
+                    ),
+                m_drive)
+            );  
+        
 
+    }
+
+    public Joystick getJoyStick(){
+            return this.logi;
     }
 
     private void configureButtonBindings() {

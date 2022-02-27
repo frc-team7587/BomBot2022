@@ -15,11 +15,13 @@ public class Constants {
     public static final int LOGIJOY_PORT = 1;
     
      // Performance constants
-    public static final double DRIVE_SPEED_MULTIPLIER = 0.75;
-    public static final double INTAKE_MAX_SPEED = 0.45;
-    public static final double ARM_UP_SPEED = 1.0;
-    public static final double ARM_DOWN_SPEED = 0.2;
-
+    public static final double DRIVE_SPEED_MULTIPLIER = 1;   // to be verified
+    public static final double INTAKE_MAX_SPEED = 0.45;         // tested, ok
+    public static final double ARM_UP_SPEED = 0.5;             // to be tested on assembled arm
+    public static final double ARM_DOWN_SPEED = 0.3;             // to be tested on assembled arm
+    public static final double ARM_UP_MAX_CYCLES = 1000;
+    public static final double ARM_DOWN_MAX_CYCLES = 1000;
+    
     // Arm soft limits (to be tested)
     // public static final float ARM_SOFT_LIMIT_FWD = 15;
     // public static final float ARM_SOFT_LIMIT_BKW = -15; 
