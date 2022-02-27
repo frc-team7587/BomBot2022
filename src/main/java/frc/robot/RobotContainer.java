@@ -17,8 +17,8 @@ import static frc.robot.Constants.*;
 public class RobotContainer {
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
     private final DriveTrain m_drive = new DriveTrain();
-    private final Arm m_arm = new Arm();
-    private final Intake m_intake = new Intake();
+    private final Arm arm = new Arm();
+    private final Intake intake = new Intake();
 
     final XboxController xbox = new XboxController(XBOX_CTRL_PORT);
     final Joystick logi = new Joystick(LOGIJOY_PORT);
@@ -41,16 +41,17 @@ public class RobotContainer {
     SmartDashboard.putNumber("Auto Command Pause: ", 0.5);
 
     // Arm speeds
-    SmartDashboard.putNumber("Arm-UP", ARM_UP_SPEED);
-    SmartDashboard.putNumber("Arm-DOWN", ARM_DOWN_SPEED);
+//     SmartDashboard.putNumber("Arm-UP", ARM_UP_SPEED);
+//     SmartDashboard.putNumber("Arm-DOWN", ARM_DOWN_SPEED);
 
         configureButtonBindings();
 
         m_drive.setDefaultCommand(
+           // polarity based on normal (+) throttle
             new RunCommand(
                 () -> m_drive.drive(
                     DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
-                    DRIVE_SPEED_MULTIPLIER * 0.75 * -logi.getTwist() * logi.getThrottle()
+                    DRIVE_SPEED_MULTIPLIER * TWIST_DISCOUNT * -logi.getTwist() * logi.getThrottle()
                     ),
                 m_drive)
             );  
@@ -58,27 +59,23 @@ public class RobotContainer {
 
     }
 
-    public Joystick getJoyStick(){
-            return this.logi;
-    }
-
     private void configureButtonBindings() {
 
         // Intake 
         new JoystickButton(xbox, Button.kLeftBumper.value)
-             .whileHeld( new IntakeIn(m_intake) );
+             .whileHeld( new IntakeIn(intake) );
              
         new JoystickButton(xbox, Button.kRightBumper.value)
-            .whileHeld( new IntakeOut(m_intake) );
+            .whileHeld( new IntakeOut(intake) );
 
         // Arm
        new JoystickButton(xbox, Button.kY.value) // Y button
-            .whileHeld(new ArmUp(m_arm));
+            .whileHeld(new ArmUp(arm));
 
        new JoystickButton(xbox, Button.kB.value)   // B button
-           .whileHeld(new ArmDown(m_arm));
+           .whileHeld(new ArmDown(arm));
 
-        /* NOTE: .whileHeld(() -> m_arm.lower(), m_arm) is NOT right; that one implements an InstantCommand thus
+        /* NOTE: .whileHeld(() -> m_arm.lower(), m_arm) is bad; that one implements an InstantCommand thus
           doesn't give us chance to call m_arm.stop() when command ends, leaving the motor continue running even after button released!
           It's probably suitable for cases when we don't need to stop motor, or expect other buttons to end it, such as setting a constant voltage.
         */
@@ -93,63 +90,60 @@ public class RobotContainer {
             return null;
 
         switch (position) {
-           case "Backout Only":
+           case "Back-Out Only":
                 cmd = initWait().andThen(
                 maneuver(-0.5, 0, 0.7)).andThen(fullStop());
                 break;
             case "T1-Left":
                 cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.65)).andThen(
-                                maneuver(0, 0.23, 0.5))
-                        .andThen(
-                                maneuver(0.4, -0.20, 2.68))
-                        .andThen(
-                                fullStop());
+                        maneuver(-0.5, 0, 0.65)).andThen(       // back out of tarmac
+                        maneuver(0, 0.23, 0.5)).andThen(        // turn right
+                        maneuver(0.4, -0.20, 2.68)).andThen(    // curve left to fender
+                        fullStop());
                 break;
             case "T1-Center":
                 cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.75)).andThen(
-                                maneuver(0.5, 0, 1.38))
-                        .andThen(
-                                fullStop());
+                        maneuver(-0.5, 0, 0.75)).andThen(       // back out of tarmac
+                        maneuver(0.5, 0, 1.38)).andThen(        // move straight to fender
+                        fullStop());
                 break;
             case "T1-Right":
                 cmd = initWait().andThen(
                         maneuver(-0.5, 0, 0.7)).andThen(
-                                maneuver(0, -0.23, 0.5))
-                        .andThen(
-                                maneuver(0.4, 0.20, 2.71))
-                        .andThen(
-                                fullStop());
+                        maneuver(0, -0.23, 0.5)).andThen(
+                        maneuver(0.4, 0.20, 2.71)).andThen(
+                        fullStop());
                 break;
             case "T2-Left":
                 cmd = initWait().andThen(
                         maneuver(-0.5, 0, 0.65)).andThen(
-                                maneuver(0, 0.23, 0.5))
-                        .andThen(
-                                maneuver(0.4, -0.20, 2.68))
-                        .andThen(
-                                fullStop());
+                        maneuver(0, 0.23, 0.5)).andThen(
+                        maneuver(0.4, -0.20, 2.68)).andThen(
+                        fullStop());
                 break;
             case "T2-Center":
                 cmd = initWait().andThen(
                         maneuver(-0.5, 0, 0.75)).andThen(
-                                maneuver(0.5, 0, 1.4))
-                        .andThen(
-                                fullStop());
+                        maneuver(0.5, 0, 1.4)).andThen(
+                        fullStop());
                 break;
             case "T2-Right":
                 cmd = initWait().andThen(
                         maneuver(-0.5, 0, 0.7)).andThen(
-                                maneuver(0, -0.23, 0.5))
-                        .andThen(
-                                maneuver(0.4, 0.20, 2.71))
-                        .andThen(
-                                fullStop());
+                        maneuver(0, -0.23, 0.5)).andThen(
+                        maneuver(0.4, 0.20, 2.71)).andThen(
+                        fullStop());
                 break;
             default:
                 return null;
         }
+        
+        cmd = cmd.andThen(
+                  new IntakeOut(intake).withTimeout(2)    // shoot out cargo
+                ).andThen(
+                  maneuver(-0.6, 0, 1.5)          // back away from fender
+                );
+
         return cmd;
     }
 
