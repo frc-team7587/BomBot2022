@@ -7,6 +7,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.*;
 import edu.wpi.first.wpilibj2.command.*;
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmUp;
+import frc.robot.commands.IntakeIn;
+import frc.robot.commands.IntakeOut;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 
@@ -59,21 +63,27 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
+
         // Intake 
         new JoystickButton(xbox, Button.kLeftBumper.value)
-             .whileHeld(() -> m_intake.in(), m_intake);
-
+             .whileHeld( new IntakeIn(m_intake) );
+             
         new JoystickButton(xbox, Button.kRightBumper.value)
-             .whileHeld(() -> m_intake.out(), m_intake);
+            .whileHeld( new IntakeOut(m_intake) );
 
         // Arm
        new JoystickButton(xbox, Button.kY.value) // Y button
-            .whileHeld(()->m_arm.raise(), m_arm);
+            .whileHeld(new ArmUp(m_arm));
 
        new JoystickButton(xbox, Button.kB.value)   // B button
-           .whileHeld(() -> m_arm.lower(), m_arm);
-    }
+           .whileHeld(new ArmDown(m_arm));
 
+        /* NOTE: .whileHeld(() -> m_arm.lower(), m_arm) is NOT right; that one implements an InstantCommand thus
+          doesn't give us chance to call m_arm.stop() when command ends, leaving the motor continue running even after button released!
+          It's probably suitable for cases when we don't need to stop motor, or expect other buttons to end it, such as setting a constant voltage.
+        */
+             
+    }
     public Command getAutonomousCommand() {
 
         Command cmd = null;

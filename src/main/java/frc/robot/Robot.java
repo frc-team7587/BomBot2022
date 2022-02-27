@@ -12,6 +12,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
   }
 
+
   @Override
   public void robotPeriodic() {
     // System.out.println("throttle: " + m_robotContainer.getJoyStick().getThrottle());
@@ -40,4 +41,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {  }
 
+  @Override
+  public void testInit() {
+    if (m_autoCommand != null) {
+      m_autoCommand.cancel();
+    }
+  }
+
+  @Override
+  public void testPeriodic() {}
 }

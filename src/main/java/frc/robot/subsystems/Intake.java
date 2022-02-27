@@ -9,17 +9,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
   
-  private final TalonSRX m_intake = new TalonSRX(INTAKE_TALON_ID);
-
-  public Intake(){
-    m_intake.configFactoryDefault();
-  }
+  TalonSRX intake = new TalonSRX(INTAKE_TALON_ID);
 
   public void in() {
-    m_intake.set(ControlMode.PercentOutput, -INTAKE_MAX_SPEED);
+    intake.set(ControlMode.PercentOutput, -INTAKE_MAX_SPEED);
   }
 
   public void out() {
-    m_intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED);
+    intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED * 1.5);
+  }
+
+  public void stop() {
+    intake.set(ControlMode.PercentOutput, 0);
+  }
+
+  @Override
+  public void periodic() {
   }
 }

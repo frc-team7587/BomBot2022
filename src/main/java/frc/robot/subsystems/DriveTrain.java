@@ -22,17 +22,11 @@ public class DriveTrain extends SubsystemBase {
   private final DifferentialDrive m_drive = new DifferentialDrive(left, right);
 
   public DriveTrain(){
-    
-    left1.configFactoryDefault();
-    left2.configFactoryDefault();
-    right1.configFactoryDefault();
-    right2.configFactoryDefault();
-
-    this.left.setInverted(false);
     this.right.setInverted(true);
   }
 
   public void drive(double speed, double rotation) {
+
     m_drive.arcadeDrive(speed, rotation);
   }
 
@@ -45,5 +39,8 @@ public class DriveTrain extends SubsystemBase {
     super.setDefaultCommand(defaultCommand);
   }
 
-  // @Override  public void periodic() {  }
+  @Override
+  public void periodic() {
+    
+  }
 }
