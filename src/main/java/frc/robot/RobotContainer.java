@@ -48,12 +48,14 @@ public class RobotContainer {
             .whileHeld( new IntakeOut(m_intake) );
 
         // Arm
-       new JoystickButton(xbox, Button.kY.value) // Y button
-            .whileHeld(new ArmUp(m_arm));
+        if (ARM_LOCATION < ARM_MAX_LOCATION) { //will only look for y button if it is not in max position
+            new JoystickButton(xbox, Button.kY.value) // Y button
+                .whileHeld(new ArmUp(m_arm));
 
-       new JoystickButton(xbox, Button.kB.value)   // B button
-           .whileHeld(new ArmDown(m_arm));
-
+        } else if (ARM_LOCATION > 0) { //will only look for b button if it is not in min position
+            new JoystickButton(xbox, Button.kB.value)   // B button
+                .whileHeld(new ArmDown(m_arm));
+        }
     }
 
     public Command getAutonomousCommand() {

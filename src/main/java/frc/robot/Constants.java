@@ -21,6 +21,8 @@ public class Constants {
     public static final double ARM_DOWN_SPEED = 0.3;             // to be tested on assembled arm
     public static final double ARM_UP_MAX_CYCLES = 1000;
     public static final double ARM_DOWN_MAX_CYCLES = 1000;
+    public static double ARM_LOCATION = 20; //starting location of arm
+    public static final double ARM_MAX_LOCATION = 20; //max location of arm 
     
     // Arm soft limits (to be tested)
     // public static final float ARM_SOFT_LIMIT_FWD = 15;

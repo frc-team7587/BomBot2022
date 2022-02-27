@@ -26,6 +26,7 @@ public class ArmUp extends CommandBase {
     if( (++count)%25==0){
       cycles++;
       System.out.println("arm UP cycles " + cycles + " [" + ++count + "]");
+      ARM_LOCATION = ARM_LOCATION + ARM_LOCATION/ARM_UP_MAX_CYCLES; //increments the location every cycle
     }
     m_arm.raise();
 

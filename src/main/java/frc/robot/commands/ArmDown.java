@@ -25,6 +25,8 @@ public class ArmDown extends CommandBase {
     if( (++count)%25==0){
       cycles++;
       System.out.println("arm DOWN cycles " + cycles + " [" + ++count + "]");
+      ARM_LOCATION = ARM_LOCATION - ARM_LOCATION/ARM_DOWN_MAX_CYCLES; //increments the location every cycle
+
     }
 
     m_arm.lower();
