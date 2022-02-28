@@ -25,24 +25,29 @@ public class RobotContainer {
 
     public RobotContainer() {
 
-    // set up possible auto start position
-    m_chooser.setDefaultOption("None", null);
-    m_chooser.addOption("Back-Out Only","Back-Out Only");
-    m_chooser.addOption("T1-Left","T1-Left");
-    m_chooser.addOption("T1-Center","T1-Center");
-    m_chooser.addOption("T1-Right","T1-Right");
-    m_chooser.addOption("T2-Left", "T2-Left");
-    m_chooser.addOption("T2-Center","T2-Center");
-    m_chooser.addOption("T2-Right", "T2-Right");
-    SmartDashboard.putData(m_chooser);
+        // set up possible auto start position
+        m_chooser.setDefaultOption("None", null);
+        m_chooser.addOption("Back-Out Only","Back-Out Only");
+        m_chooser.addOption("T1-Left","T1-Left");
+        m_chooser.addOption("T1-Center","T1-Center");
+        m_chooser.addOption("T1-Right","T1-Right");
+        m_chooser.addOption("T2-Left", "T2-Left");
+        m_chooser.addOption("T2-Center","T2-Center");
+        m_chooser.addOption("T2-Right", "T2-Right");
+        SmartDashboard.putData(m_chooser);
 
-    //init delay of auto run
-    SmartDashboard.putNumber("Auto Init Delay: ", 1);
-    SmartDashboard.putNumber("Auto Command Pause: ", 0.5);
+        //init delay of auto run
+        SmartDashboard.putNumber("Auto Init Delay: ", 1);
+        SmartDashboard.putNumber("Auto Command Pause: ", 0.5);
 
-    // Arm speeds
-//     SmartDashboard.putNumber("Arm-UP", ARM_UP_SPEED);
-//     SmartDashboard.putNumber("Arm-DOWN", ARM_DOWN_SPEED);
+        // Auto-tuning parameters
+        SmartDashboard.putNumber("t_Back_Vol", 0);
+        SmartDashboard.putNumber("t_Back_Time", 0);
+        SmartDashboard.putNumber("t_Turn_Vol", 0);
+        SmartDashboard.putNumber("t_Turn_Time", 0);
+        SmartDashboard.putNumber("t_Fwd_Vol", 0);
+        SmartDashboard.putNumber("t_Fwd_Twist", 0);
+        SmartDashboard.putNumber("t_Fwd_Time", 0);
 
         configureButtonBindings();
 
@@ -55,8 +60,6 @@ public class RobotContainer {
                     ),
                 m_drive)
             );  
-        
-
     }
 
     private void configureButtonBindings() {
@@ -83,12 +86,20 @@ public class RobotContainer {
     }
     public Command getAutonomousCommand() {
 
-        Command cmd = null;
-
         String position = m_chooser.getSelected();
         if (position == null)
             return null;
 
+        Command cmd = null;
+        // tuning only
+        // double tBackVol = SmartDashboard.getNumber("t_Back_Vol", 0);
+        // double tBackTime = SmartDashboard.getNumber("t_Back_Time", 0);
+        // double tTurnVol = SmartDashboard.getNumber("t_Turn_Vol", 0);
+        // double tTurnTime = SmartDashboard.getNumber("t_Turn_Time", 0);
+        // double tFwdVol = SmartDashboard.getNumber("t_Fwd_Vol", 0);
+        // double tFwdTwist = SmartDashboard.getNumber("t_Fwd_Twist", 0);
+        // double tFwdTime = SmartDashboard.getNumber("t_Fwd_Time", 0);
+        
         switch (position) {
            case "Back-Out Only":
                 cmd = initWait().andThen(
@@ -99,6 +110,9 @@ public class RobotContainer {
                         maneuver(-0.5, 0, 0.65)).andThen(       // back out of tarmac
                         maneuver(0, 0.23, 0.5)).andThen(        // turn right
                         maneuver(0.4, -0.20, 2.68)).andThen(    // curve left to fender
+                        // maneuver(tBackVol, 0, tBackTime)).andThen(
+                        // maneuver(0, tTurnVol, tTurnTime)).andThen(
+                        // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
                         fullStop());
                 break;
             case "T1-Center":

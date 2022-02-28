@@ -1,0 +1,61 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="481" y="54"/>
+		<property name="Text" value="* Auto Maneuver Tuning:"/>
+	</static-widget>
+	<widget field="t_Fwd_Time" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="508" y="247"/>
+	</widget>
+	<widget field="t_Fwd_Twist" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="506" y="221"/>
+	</widget>
+	<widget field="t_Fwd_Vol" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="518" y="196"/>
+	</widget>
+	<widget field="t_Turn_Time" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="506" y="158"/>
+	</widget>
+	<widget field="t_Turn_Vol" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="514" y="133"/>
+	</widget>
+	<widget field="t_Back_Time" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="505" y="100"/>
+	</widget>
+	<widget field="t_Back_Vol" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="513" y="76"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="381" y="6"/>
+		<property name="Text" value="RoboRio Connected:"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="486" y="7"/>
+		<width>12</width>
+		<height>14</height>
+	</static-widget>
+	<widget field="Auto Command Pause: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="39" y="42"/>
+	</widget>
+	<widget field="Auto Init Delay: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="72" y="17"/>
+	</widget>
+	<widget field="SendableChooser[0]" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="24" y="113"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="22" y="88"/>
+		<height>28</height>
+		<property name="Text" value="* Auto Start Location: "/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="161" y="91"/>
+		<width>294</width>
+		<height>211</height>
+		<property name="Image File" value="C:\Users\alan\git\frcExampleStateSpaceDiffDrive\driverstation-view.jpg"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
