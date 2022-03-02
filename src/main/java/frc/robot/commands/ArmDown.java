@@ -36,8 +36,6 @@ public class ArmDown extends CommandBase {
       // We are going down but bottom limit is not tripped so go at commanded speed
       m_arm.lower();
     }
-
-
   }
 
   @Override
