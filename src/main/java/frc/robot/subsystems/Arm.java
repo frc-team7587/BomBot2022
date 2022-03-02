@@ -25,7 +25,7 @@ public class Arm extends SubsystemBase {
             count=0;
           }
       
-        m_arm.set(ControlMode.PercentOutput, ARM_UP_SPEED);     // up!
+        m_arm.set(ControlMode.PercentOutput, ARM_UP_SPEED * 1.);     // up!
     }
     public void lower() {
         if(++count > 20){
