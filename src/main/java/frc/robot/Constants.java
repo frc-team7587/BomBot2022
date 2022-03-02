@@ -16,7 +16,9 @@ public class Constants {
     
      // Performance constants
     public static final double DRIVE_SPEED_MULTIPLIER = 1;   // to be verified
-    public static final double INTAKE_MAX_SPEED = 0.45;         // tested, ok
+    public static final double INTAKE_MAX_SPEED_IN = 0.45;  
+    public static final double INTAKE_MAX_SPEED_OUT = 0.65;  
+           // tested, ok
     public static final double ARM_UP_SPEED = 0.5;             // to be tested on assembled arm
     public static final double ARM_DOWN_SPEED = 0.3;             // to be tested on assembled arm
     public static final double ARM_UP_MAX_CYCLES = 1000;
@@ -26,4 +28,7 @@ public class Constants {
     // public static final float ARM_SOFT_LIMIT_FWD = 15;
     // public static final float ARM_SOFT_LIMIT_BKW = -15; 
 
+    //limit port numbers
+    public static final int UPLIMIT_ID = 0;
+    public static final int DOWNLIMIT_ID = 1;
 }
