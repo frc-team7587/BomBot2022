@@ -12,11 +12,11 @@ public class Intake extends SubsystemBase {
   TalonSRX intake = new TalonSRX(INTAKE_TALON_ID);
 
   public void in() {
-    intake.set(ControlMode.PercentOutput, -INTAKE_MAX_SPEED_IN);
+    intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED_IN);
   }
 
   public void out() {
-    intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED_OUT);
+    intake.set(ControlMode.PercentOutput, -INTAKE_MAX_SPEED_OUT);
   }
 
   public void stop() {
