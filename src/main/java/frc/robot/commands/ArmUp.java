@@ -8,9 +8,10 @@ import frc.robot.subsystems.*;
 
 
 public class ArmUp extends CommandBase {
-  DigitalInput toplimitSwitch = new DigitalInput(UPLIMIT_ID);
   private Arm m_arm;
-  private int count, cycles;
+  private int count;
+
+  private DigitalInput toplimitSwitch = new DigitalInput(UPLIMIT_ID);
 
   public ArmUp(Arm subsystem) {
     addRequirements(subsystem);
@@ -20,20 +21,16 @@ public class ArmUp extends CommandBase {
   @Override
   public void initialize() {
     count = 0;
-    cycles = 0;
   }
 
   @Override
   public void execute() {
-    if( (++count)%25==0){
-      cycles++;
-      System.out.println("arm UP cycles " + cycles + " [" + ++count + "]");
+    if( (++count)%20==0){
+      System.out.println("arm UP cycles [" + ++count + "]");
     }
     if (toplimitSwitch.get()) {
-      // We are going up and top limit is tripped so stop
       m_arm.stop();
     } else {
-      // We are going up but top limit is not tripped so go at commanded speed
       m_arm.raise();
     }    
   }

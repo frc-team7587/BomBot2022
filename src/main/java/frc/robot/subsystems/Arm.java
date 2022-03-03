@@ -9,23 +9,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
     
-    // private final CANSparkMax m_spark = new CANSparkMax(ARM_SPARK_ID, MotorType.kBrushless);
-
-    TalonSRX m_arm = new TalonSRX(ARM_TALON_ID);
+    private TalonSRX m_arm = new TalonSRX(ARM_TALON_ID);
 
     public Arm(){
-        
-        // m_arm.configFactoryDefault();
+         m_arm.configFactoryDefault();
     }
+
     private int count=0;
-    private int cycles=0;
     public void raise() {
         if(++count > 20){
-            System.out.println("armUP...." + ARM_UP_SPEED + "[" + ++cycles + "]");
+            System.out.println("armUP...." + ARM_UP_SPEED);
             count=0;
           }
-      
-        m_arm.set(ControlMode.PercentOutput, ARM_UP_SPEED * 1.);     // up!
+        m_arm.set(ControlMode.PercentOutput, ARM_UP_SPEED);     // up!
     }
     public void lower() {
         if(++count > 20){

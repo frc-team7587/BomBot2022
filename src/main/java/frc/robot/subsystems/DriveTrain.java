@@ -22,7 +22,14 @@ public class DriveTrain extends SubsystemBase {
   private final DifferentialDrive m_drive = new DifferentialDrive(left, right);
 
   public DriveTrain(){
+    
+    this.left1.configFactoryDefault();
+    this.left2.configFactoryDefault();
+    this.right1.configFactoryDefault();
+    this.right2.configFactoryDefault();
+    
     this.right.setInverted(true);
+
   }
 
   public void drive(double speed, double rotation) {
