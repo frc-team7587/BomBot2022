@@ -13,8 +13,12 @@ import frc.robot.commands.IntakeIn;
 import frc.robot.commands.IntakeOut;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.*;
 
 public class RobotContainer {
+    // CameraServer.startAutomaticCapture();
+
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
     private final DriveTrain m_drive = new DriveTrain();
     private final Arm arm = new Arm();
@@ -26,8 +30,8 @@ public class RobotContainer {
     public RobotContainer() {
 
         // set up possible auto start position
-        m_chooser.setDefaultOption("None", null);
-        m_chooser.addOption("Back-Out Only","Back-Out Only");
+        m_chooser.setDefaultOption("Back-Out Only","Back-Out Only");
+        m_chooser.addOption("None", null);
         m_chooser.addOption("T1-Left","T1-Left");
         m_chooser.addOption("T1-Center","T1-Center");
         m_chooser.addOption("T1-Right","T1-Right");
@@ -92,25 +96,26 @@ public class RobotContainer {
 
         Command cmd = null;
         // tuning only
-        // double tBackVol = SmartDashboard.getNumber("t_Back_Vol", 0);
-        // double tBackTime = SmartDashboard.getNumber("t_Back_Time", 0);
-        // double tTurnVol = SmartDashboard.getNumber("t_Turn_Vol", 0);
-        // double tTurnTime = SmartDashboard.getNumber("t_Turn_Time", 0);
-        // double tFwdVol = SmartDashboard.getNumber("t_Fwd_Vol", 0);
-        // double tFwdTwist = SmartDashboard.getNumber("t_Fwd_Twist", 0);
-        // double tFwdTime = SmartDashboard.getNumber("t_Fwd_Time", 0);
+        double tBackVol = SmartDashboard.getNumber("t_Back_Vol", 0);
+        double tBackTime = SmartDashboard.getNumber("t_Back_Time", 0);
+        double tTurnVol = SmartDashboard.getNumber("t_Turn_Vol", 0);
+        double tTurnTime = SmartDashboard.getNumber("t_Turn_Time", 0);
+        double tFwdVol = SmartDashboard.getNumber("t_Fwd_Vol", 0);
+        double tFwdTwist = SmartDashboard.getNumber("t_Fwd_Twist", 0);
+        double tFwdTime = SmartDashboard.getNumber("t_Fwd_Time", 0);
         
         switch (position) {
            case "Back-Out Only":
-                cmd = maneuver(-0.4, 0, 1).andThen(fullStop());
+                cmd = maneuver(-0.5, 0, 2).andThen(fullStop());
                 break;
             case "T1-Left":
             case "T2-Left":
-                cmd = maneuver(-0.5, 0, 0.65).andThen(       // back out of tarmac
+                cmd = 
+                    // maneuver(tBackVol, 0, tBackTime).andThen(
+                    maneuver(-0.5, 0, 0.65).andThen(       // back out of tarmac
                     initWait()).andThen(
                     maneuver(0, 0.23, 0.5)).andThen(        // turn right
                     maneuver(0.4, -0.20, 2.68)).andThen(    // curve left to fender
-                    // maneuver(tBackVol, 0, tBackTime)).andThen(
                     // maneuver(0, tTurnVol, tTurnTime)).andThen(
                     // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
                     deliverCargo()).andThen(
@@ -118,9 +123,9 @@ public class RobotContainer {
                 break;
             case "T1-Center":
             case "T2-Center":
-                cmd = maneuver(-0.5, 0, 0.75).andThen(       // back out of tarmac
+                cmd = maneuver(-0.5, 0, 1.6).andThen(       // back out of tarmac
                         initWait()).andThen(
-                        maneuver(0.5, 0, 1.38)).andThen(        // move straight to fender
+                        maneuver(0.5, 0, 3.15)).andThen(        // move straight to fender
                         // maneuver(tBackVol, 0, tBackTime)).andThen(
                         // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
                         deliverCargo()).andThen(
@@ -128,13 +133,14 @@ public class RobotContainer {
                 break;
             case "T1-Right":
             case "T2-Right":
-                cmd = maneuver(-0.5, 0, 0.65).andThen(       // back out of tarmac
-                        initWait()).andThen(
-                        maneuver(0, 0.23, 0.5)).andThen(        // turn right
-                        maneuver(0.4, -0.20, 2.68)).andThen(    // curve left to fender
-                        // maneuver(tBackVol, 0, tBackTime)).andThen(
+                cmd =  
+                        // maneuver(tBackVol, 0, tBackTime).andThen(
+                        maneuver(-0.500000, 0, 1.650000).andThen(
+                         initWait()).andThen(
                         // maneuver(0, tTurnVol, tTurnTime)).andThen(
                         // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
+                        maneuver(0, 0.5000, 0.500000)).andThen(
+                        maneuver(0.400000, -0.200000, 2.680000)).andThen(
                         deliverCargo()).andThen(
                         fullStop());
                 break;
@@ -147,7 +153,7 @@ public class RobotContainer {
 
     private Command deliverCargo(){
         return new IntakeOut(intake).withTimeout(2).andThen(
-                maneuver(-0.5, 0, 1.5));
+                maneuver(-0.5, 0, 3.5));
     }
 
     private Command maneuver(double fwd, double rot, double elapse){

@@ -17,9 +17,9 @@ public class Constants {
      // Performance constants
     public static final double DRIVE_SPEED_MULTIPLIER = 1;   // to be verified
     public static final double INTAKE_MAX_SPEED_IN = 0.45;  
-    public static final double INTAKE_MAX_SPEED_OUT = 0.35;  
-    public static final double TWIST_DISCOUNT = 0.75;
-           // tested, ok
+    public static final double INTAKE_MAX_SPEED_OUT = 0.70;  
+    public static final double TWIST_DISCOUNT = 0.60;
+           // tested, o
     public static final double ARM_UP_SPEED = 0.5;             // to be tested on assembled arm
     public static final double ARM_DOWN_SPEED = 0.3;             // to be tested on assembled arm
     // public static final double ARM_UP_MAX_CYCLES = 1000;
