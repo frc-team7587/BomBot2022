@@ -102,63 +102,52 @@ public class RobotContainer {
         
         switch (position) {
            case "Back-Out Only":
-                cmd = initWait().andThen(
-                maneuver(-0.5, 0, 0.7)).andThen(fullStop());
+                cmd = maneuver(-0.4, 0, 1).andThen(fullStop());
                 break;
             case "T1-Left":
-                cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.65)).andThen(       // back out of tarmac
+            case "T2-Left":
+                cmd = maneuver(-0.5, 0, 0.65).andThen(       // back out of tarmac
+                    initWait()).andThen(
+                    maneuver(0, 0.23, 0.5)).andThen(        // turn right
+                    maneuver(0.4, -0.20, 2.68)).andThen(    // curve left to fender
+                    // maneuver(tBackVol, 0, tBackTime)).andThen(
+                    // maneuver(0, tTurnVol, tTurnTime)).andThen(
+                    // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
+                    deliverCargo()).andThen(
+                    fullStop());
+                break;
+            case "T1-Center":
+            case "T2-Center":
+                cmd = maneuver(-0.5, 0, 0.75).andThen(       // back out of tarmac
+                        initWait()).andThen(
+                        maneuver(0.5, 0, 1.38)).andThen(        // move straight to fender
+                        // maneuver(tBackVol, 0, tBackTime)).andThen(
+                        // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
+                        deliverCargo()).andThen(
+                        fullStop());
+                break;
+            case "T1-Right":
+            case "T2-Right":
+                cmd = maneuver(-0.5, 0, 0.65).andThen(       // back out of tarmac
+                        initWait()).andThen(
                         maneuver(0, 0.23, 0.5)).andThen(        // turn right
                         maneuver(0.4, -0.20, 2.68)).andThen(    // curve left to fender
                         // maneuver(tBackVol, 0, tBackTime)).andThen(
                         // maneuver(0, tTurnVol, tTurnTime)).andThen(
                         // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
-                        fullStop());
-                break;
-            case "T1-Center":
-                cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.75)).andThen(       // back out of tarmac
-                        maneuver(0.5, 0, 1.38)).andThen(        // move straight to fender
-                        fullStop());
-                break;
-            case "T1-Right":
-                cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.7)).andThen(
-                        maneuver(0, -0.23, 0.5)).andThen(
-                        maneuver(0.4, 0.20, 2.71)).andThen(
-                        fullStop());
-                break;
-            case "T2-Left":
-                cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.65)).andThen(
-                        maneuver(0, 0.23, 0.5)).andThen(
-                        maneuver(0.4, -0.20, 2.68)).andThen(
-                        fullStop());
-                break;
-            case "T2-Center":
-                cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.75)).andThen(
-                        maneuver(0.5, 0, 1.4)).andThen(
-                        fullStop());
-                break;
-            case "T2-Right":
-                cmd = initWait().andThen(
-                        maneuver(-0.5, 0, 0.7)).andThen(
-                        maneuver(0, -0.23, 0.5)).andThen(
-                        maneuver(0.4, 0.20, 2.71)).andThen(
+                        deliverCargo()).andThen(
                         fullStop());
                 break;
             default:
                 return null;
         }
         
-        cmd = cmd.andThen(
-                  new IntakeOut(intake).withTimeout(2)    // shoot out cargo
-                ).andThen(
-                  maneuver(-0.6, 0, 1.5)          // back away from fender
-                );
-
         return cmd;
+    }
+
+    private Command deliverCargo(){
+        return new IntakeOut(intake).withTimeout(2).andThen(
+                maneuver(-0.5, 0, 1.5));
     }
 
     private Command maneuver(double fwd, double rot, double elapse){
