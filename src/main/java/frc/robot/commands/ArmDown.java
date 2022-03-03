@@ -10,8 +10,6 @@ public class ArmDown extends CommandBase {
   private Arm m_arm;
   private int count;
 
-  private DigitalInput bottomlimitSwitch = new DigitalInput(DOWNLIMIT_ID);
-
   public ArmDown(Arm subsystem) {
     addRequirements(subsystem);
     m_arm = subsystem;
@@ -27,11 +25,7 @@ public class ArmDown extends CommandBase {
     if( (++count)%20==0){
       System.out.println("arm DOWN [" + ++count + "]");
     }
-    if (bottomlimitSwitch.get()) {
-      m_arm.stop();
-    } else {
-      m_arm.lower();
-    }
+    m_arm.lower();
   }
 
   @Override
