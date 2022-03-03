@@ -2,12 +2,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMax.SoftLimitDirection;
 
 import static frc.robot.Constants.*;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -29,7 +25,7 @@ public class Arm extends SubsystemBase {
             count=0;
           }
       
-        m_arm.set(ControlMode.PercentOutput, ARM_UP_SPEED);     // up!
+        m_arm.set(ControlMode.PercentOutput, ARM_UP_SPEED * 1.);     // up!
     }
     public void lower() {
         if(++count > 20){

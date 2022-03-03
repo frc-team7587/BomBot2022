@@ -1,12 +1,14 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.*;
 import static frc.robot.Constants.*;
 
 import frc.robot.subsystems.*;
 
+
 public class ArmUp extends CommandBase {
-  
+  DigitalInput toplimitSwitch = new DigitalInput(UPLIMIT_ID);
   private Arm m_arm;
   private int count, cycles;
 
@@ -27,14 +29,13 @@ public class ArmUp extends CommandBase {
       cycles++;
       System.out.println("arm UP cycles " + cycles + " [" + ++count + "]");
     }
-    m_arm.raise();
-
-    // if(cycles < ARM_UP_MAX_CYCLES){
-    //   m_arm.raise();
-    // }else{
-    //   m_arm.stop();
-    // }
-    
+    if (toplimitSwitch.get()) {
+      // We are going up and top limit is tripped so stop
+      m_arm.stop();
+    } else {
+      // We are going up but top limit is not tripped so go at commanded speed
+      m_arm.raise();
+    }    
   }
 
   @Override
