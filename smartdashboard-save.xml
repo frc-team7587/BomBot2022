@@ -52,10 +52,34 @@
 		<location x="161" y="91"/>
 		<width>294</width>
 		<height>211</height>
-		<property name="Image File" value="C:\Users\alan\git\frcExampleStateSpaceDiffDrive\driverstation-view.jpg"/>
+		<property name="Image File" value="C:\Users\team7587\SmartDashboard\driverstation-view.jpg"/>
 		<property name="Maintain Aspect Ratio" value="true"/>
 	</static-widget>
 </dashboard>
 <live-window>
+	<widget field="Arm" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="23"/>
+	</widget>
+	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="17" y="31"/>
+	</widget>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="DigitalInput[8]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="16"/>
+			<height>20</height>
+			<width>88</width>
+		</widget>
+		<widget field="DigitalInput[9]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="36"/>
+			<height>20</height>
+			<width>88</width>
+		</widget>
+		<location x="16" y="29"/>
+		<width>100</width>
+		<height>62</height>
+	</widget>
+	<widget field="Intake" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="22" y="13"/>
+	</widget>
 </live-window>
 </xml>
