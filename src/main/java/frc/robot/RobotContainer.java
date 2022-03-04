@@ -139,8 +139,8 @@ public class RobotContainer {
                          initWait()).andThen(
                         // maneuver(0, tTurnVol, tTurnTime)).andThen(
                         // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
-                        maneuver(0, 0.5000, 0.500000)).andThen(
-                        maneuver(0.400000, -0.200000, 2.680000)).andThen(
+                        maneuver(0, -0.5000, 0.48500000)).andThen(
+                        maneuver(0.6400000, 0.46100000, 2.850000)).andThen(
                         deliverCargo()).andThen(
                         fullStop());
                 break;
