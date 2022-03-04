@@ -112,10 +112,10 @@ public class RobotContainer {
             case "T2-Left":
                 cmd = 
                     // maneuver(tBackVol, 0, tBackTime).andThen(
-                    maneuver(-0.5, 0, 0.65).andThen(       // back out of tarmac
+                    maneuver(-0.500000, 0, 1.650000).andThen(       // back out of tarmac
                     initWait()).andThen(
-                    maneuver(0, 0.23, 0.5)).andThen(        // turn right
-                    maneuver(0.4, -0.20, 2.68)).andThen(    // curve left to fender
+                    maneuver(0, 0.5000, 0.48500000)).andThen(        // turn right
+                    maneuver(0.6400000, -0.46100000, 2.850000)).andThen(    // curve left to fender
                     // maneuver(0, tTurnVol, tTurnTime)).andThen(
                     // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
                     deliverCargo()).andThen(
