@@ -14,10 +14,11 @@ import frc.robot.commands.IntakeOut;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.*;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.CvSink;
 
 public class RobotContainer {
-    // CameraServer.startAutomaticCapture();
 
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
     private final DriveTrain m_drive = new DriveTrain();
@@ -28,6 +29,10 @@ public class RobotContainer {
     final Joystick logi = new Joystick(LOGIJOY_PORT);
 
     public RobotContainer() {
+
+        UsbCamera camera = CameraServer.startAutomaticCapture();
+        // CvSink cvSink = CameraServer.getVideo();
+        // CvSource outputstream = CameraServer.putVideo("Blur", 640, 480);
 
         // set up possible auto start position
         m_chooser.setDefaultOption("Back-Out Only","Back-Out Only");
