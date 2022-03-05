@@ -128,9 +128,9 @@ public class RobotContainer {
                 break;
             case "T1-Center":
             case "T2-Center":
-                cmd = maneuver(-0.5, 0, 2.1).andThen(       // back out of tarmac
+                cmd = maneuver(-0.5, 0, 3.1).andThen(       // back out of tarmac
                         initWait()).andThen(
-                        maneuver(0.5, 0, 3.75)).andThen(        // move straight to fender
+                        maneuver(0.5, 0, 4)).andThen(        // move straight to fender
                         // maneuver(tBackVol, 0, tBackTime)).andThen(
                         // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
                         deliverCargo()).andThen(
