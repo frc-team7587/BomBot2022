@@ -16,11 +16,11 @@ public class Intake extends SubsystemBase {
   }
 
   public void in() {
-    m_intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED_IN);
+    m_intake.set(ControlMode.PercentOutput, -INTAKE_MAX_SPEED_OUT);
   }
 
   public void out() {
-    m_intake.set(ControlMode.PercentOutput, -INTAKE_MAX_SPEED_OUT);
+    m_intake.set(ControlMode.PercentOutput, INTAKE_MAX_SPEED_IN);
   }
 
   public void stop() {

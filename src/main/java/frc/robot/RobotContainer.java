@@ -35,7 +35,7 @@ public class RobotContainer {
         // CvSource outputstream = CameraServer.putVideo("Blur", 640, 480);
 
         // set up possible auto start position
-        m_chooser.setDefaultOption("Back-Out Only","Back-Out Only");
+   //     m_chooser.setDefaultOption("Back-Out Only","Back-Out Only");
         m_chooser.addOption("None", null);
         m_chooser.addOption("T1-Left","T1-Left");
         m_chooser.addOption("T1-Center","T1-Center");
@@ -111,26 +111,26 @@ public class RobotContainer {
         
         switch (position) {
            case "Back-Out Only":
-                cmd = maneuver(-0.5, 0, 2).andThen(fullStop());
+                cmd = maneuver(-0.5, 0, 4).andThen(fullStop());
                 break;
             case "T1-Left":
             case "T2-Left":
                 cmd = 
-                    // maneuver(tBackVol, 0, tBackTime).andThen(
-                    maneuver(-0.500000, 0, 1.650000).andThen(       // back out of tarmac
+                   // maneuver(tBackVol, 0, tBackTime).andThen(
+                     maneuver(-0.5000, 0, 3.0000).andThen(       // back out of tarmac
                     initWait()).andThen(
-                    maneuver(0, 0.5000, 0.48500000)).andThen(        // turn right
-                    maneuver(0.6400000, -0.46100000, 2.850000)).andThen(    // curve left to fender
-                    // maneuver(0, tTurnVol, tTurnTime)).andThen(
+                    maneuver(0, 0.5000, 0.7500000)).andThen(        // turn right
+                     maneuver(0.7400000, -0.49000, 2.40000)).andThen(    // curve left to fender
+                   // maneuver(0, tTurnVol, tTurnTime)).andThen(
                     // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
                     deliverCargo()).andThen(
                     fullStop());
                 break;
             case "T1-Center":
             case "T2-Center":
-                cmd = maneuver(-0.5, 0, 3.1).andThen(       // back out of tarmac
+                cmd = maneuver(-0.5, 0, 2.75).andThen(       // back out of tarmac
                         initWait()).andThen(
-                        maneuver(0.5, 0, 4)).andThen(        // move straight to fender
+                        maneuver(0.5, 0, 4.5)).andThen(        // move straight to fender
                         // maneuver(tBackVol, 0, tBackTime)).andThen(
                         // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
                         deliverCargo()).andThen(
@@ -140,12 +140,12 @@ public class RobotContainer {
             case "T2-Right":
                 cmd =  
                         // maneuver(tBackVol, 0, tBackTime).andThen(
-                        maneuver(-0.500000, 0, 1.650000).andThen(
+                      maneuver(-0.500000, 0, 2.30).andThen(
                          initWait()).andThen(
-                        // maneuver(0, tTurnVol, tTurnTime)).andThen(
-                        // maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
-                        maneuver(0, -0.5000, 0.48500000)).andThen(
-                        maneuver(0.6400000, 0.46100000, 2.850000)).andThen(
+                        //   maneuver(0, tTurnVol, tTurnTime)).andThen(
+                        //  maneuver(tFwdVol, tFwdTwist, tFwdTime)).andThen(
+                        maneuver(0, -0.5000, 0.75000)).andThen(
+                      maneuver(0.7500000, 0.52500000, 2.250000)).andThen(
                         deliverCargo()).andThen(
                         fullStop());
                 break;
@@ -158,7 +158,7 @@ public class RobotContainer {
 
     private Command deliverCargo(){
         return new IntakeOut(intake).withTimeout(2).andThen(
-                maneuver(-0.5, 0, 3.5));
+                maneuver(-0.5, 0, 4.2));
     }
 
     private Command maneuver(double fwd, double rot, double elapse){
