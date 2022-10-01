@@ -32,11 +32,13 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-  public void drive(double speed, double rotation) {
+  public void drive(double leftSpeed, double rightSpeed) {
+		this.m_drive.tankDrive(leftSpeed, rightSpeed);
+	}
 
-    m_drive.arcadeDrive(speed, rotation);
-  }
-
+	public void drive(double leftSpeed, double rightSpeed, boolean squareInputs) {
+		this.m_drive.tankDrive(leftSpeed, rightSpeed, squareInputs);
+	}
   public void stop() {
     m_drive.arcadeDrive(0, 0);
   }

@@ -26,7 +26,8 @@ public class RobotContainer {
     private final Intake intake = new Intake();
 
     final XboxController xbox = new XboxController(XBOX_CTRL_PORT);
-    final Joystick logi = new Joystick(LOGIJOY_PORT);
+    final Joystick logileft = new Joystick(LOGIJOY_PORT_LEFT);
+    final Joystick logiright = new Joystick(LOGIJOY_PORT_RIGHT);
 
     public RobotContainer() {
 
@@ -62,13 +63,13 @@ public class RobotContainer {
 
         m_drive.setDefaultCommand(
            // polarity based on normal (+) throttle
-            new RunCommand(
-                () -> m_drive.drive(
-                    DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
-                    DRIVE_SPEED_MULTIPLIER * TWIST_DISCOUNT * -logi.getTwist() * logi.getThrottle()
-                    ),
-                m_drive)
-            );  
+           new RunCommand(
+            () -> m_drive.drive(
+                DRIVE_SPEED_MULTIPLIER * logileft.getY() * logileft.getThrottle(),
+                DRIVE_SPEED_MULTIPLIER * logiright.getY() * logiright.getThrottle()
+                ),
+            m_drive)
+        ); 
     }
 
     private void configureButtonBindings() {

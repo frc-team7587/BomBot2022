@@ -12,7 +12,9 @@ public class Constants {
 
     // Control ports
     public static final int XBOX_CTRL_PORT = 0;
-    public static final int LOGIJOY_PORT = 1;
+    public static final int LOGIJOY_PORT_LEFT = 1;
+    public static final int LOGIJOY_PORT_RIGHT = 2;
+
     
      // Performance constants
     public static final double DRIVE_SPEED_MULTIPLIER = 1;   // to be verified
