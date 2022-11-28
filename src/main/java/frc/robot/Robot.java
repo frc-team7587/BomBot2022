@@ -19,14 +19,14 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
-  @Override
-  public void autonomousInit() {
-    m_autoCommand = m_robotContainer.getAutonomousCommand();
+  // @Override
+  // public void autonomousInit() {
+  //   m_autoCommand = m_robotContainer.getAutonomousCommand();
 
-    if (m_autoCommand != null) {
-      m_autoCommand.schedule();
-    }
-  }
+  //   if (m_autoCommand != null) {
+  //     m_autoCommand.schedule();
+  //   }
+  // }
 
   @Override
   public void autonomousPeriodic() {  }

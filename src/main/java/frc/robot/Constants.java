@@ -9,6 +9,7 @@ public class Constants {
     public static final int DRIVE_VICTOR_RIGHT2 = 3;
     public static final int ARM_TALON_ID = 4;
     public static final int INTAKE_TALON_ID = 5;
+    public static final int NEO_ID = 4;
 
     // Control ports
     public static final int XBOX_CTRL_PORT = 0;
@@ -17,11 +18,11 @@ public class Constants {
      // Performance constants
     public static final double DRIVE_SPEED_MULTIPLIER = 1;   // to be verified
     public static final double INTAKE_MAX_SPEED_IN = 1;  
-    public static final double INTAKE_MAX_SPEED_OUT = 1;  
-    public static final double TWIST_DISCOUNT = 0.650;   
+    public static final double INTAKE_MAX_SPEED_OUT = 0.8;  
+    public static final double TWIST_DISCOUNT = 0.8;   
            // tested, o
-    public static final double ARM_UP_SPEED =   1;             // to be tested on assembled arm
-    public static final double ARM_DOWN_SPEED = 0.55;             // to be tested on assembled arm
+    public static final double ARM_UP_SPEED = 0.450;             // to be tested on assembled arm
+    public static final double ARM_DOWN_SPEED = 0.35;             // to be tested on assembled arm
     // public static final double ARM_UP_MAX_CYCLES = 1000;
     // public static final double ARM_DOWN_MAX_CYCLES = 1000;
 

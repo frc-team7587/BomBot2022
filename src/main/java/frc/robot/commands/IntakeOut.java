@@ -14,7 +14,7 @@ public class IntakeOut extends CommandBase {
   }
 
   @Override
-  public void initialize() {
+  public void initialize() {        
   }
 
   @Override
