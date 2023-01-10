@@ -19,10 +19,10 @@ public class IntakeOut extends CommandBase {
 
   @Override
   public void execute() {
-    if(++count > 25){
-      System.out.println("intake Out....");
-      count=0;
-    }
+    // if(++count > 25){
+    //   System.out.println("intake Out....");
+    //   count=0;
+    // }
     m_intake.out();
   }
 

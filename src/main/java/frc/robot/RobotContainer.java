@@ -18,6 +18,7 @@ import frc.robot.commands.neoRunDown;
 import frc.robot.commands.neoRunUp;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
+import frc.robot.commands.*;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.cscore.UsbCamera;
@@ -71,17 +72,12 @@ public class RobotContainer {
         SmartDashboard.putNumber("t_Fwd_Time", 0);
 
         configureButtonBindings();
-
-        pcmCompressor.enableDigital();
-        solenoid.set(kReverse);
-
-        if(xbox.getRawButton(Button.kA.value) == true) {
-             solenoid.toggle();
-             System.out.println("button");
-        }
         
+    
+
         m_drive.setDefaultCommand(
            // polarity based on normal (+) throttle
+           
             new RunCommand(
                 () -> m_drive.drive(
                     DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
@@ -89,6 +85,7 @@ public class RobotContainer {
                     ),
                 m_drive)
             );  
+           
     }
 
     private void configureButtonBindings() {
@@ -106,6 +103,9 @@ public class RobotContainer {
 
        new JoystickButton(xbox, Button.kB.value)   // B button
            .whileHeld(new neoRunDown(Neo));
+
+        //    new JoystickButton(logi, 1) // Y button
+        //    .whileHeld(new stabilizer(m_drive));
           
     //     new JoystickButton(xbox, Button.kY.value) // Y button
     //        .whileHeld(new ArmUp(arm));

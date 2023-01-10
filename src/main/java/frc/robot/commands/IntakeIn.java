@@ -6,7 +6,7 @@ import frc.robot.subsystems.Intake;
 public class IntakeIn extends CommandBase {
 
   private Intake m_intake;
-  private int count;
+  // private int count;
 
   public IntakeIn(Intake intake) {
     addRequirements(intake);
@@ -19,17 +19,17 @@ public class IntakeIn extends CommandBase {
 
   @Override
   public void execute() {
-    if(++count > 25){
-      System.out.println("intake In....");
-      count=0;
-    }
+    // if(++count > 25){
+    //   System.out.println("intake In....");
+    //   count=0;
+    // }
     m_intake.in();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("intake In stopped");
+    // System.out.println("intake In stopped");
     m_intake.stop();
   }
 }
