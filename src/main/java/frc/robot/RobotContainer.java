@@ -10,12 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.*;
 import edu.wpi.first.wpilibj2.command.*;
-import frc.robot.commands.ArmDown;
-import frc.robot.commands.ArmUp;
-import frc.robot.commands.IntakeIn;
-import frc.robot.commands.IntakeOut;
-import frc.robot.commands.neoRunDown;
-import frc.robot.commands.neoRunUp;
 import frc.robot.subsystems.*;
 import static frc.robot.Constants.*;
 import frc.robot.commands.*;
@@ -33,9 +27,7 @@ public class RobotContainer {
     // private final Arm arm = new Arm();
     private final Intake intake = new Intake();
     private final neo Neo = new neo();
-    private final Compressor pcmCompressor = new Compressor(6, PneumaticsModuleType.CTREPCM);
-    private final DoubleSolenoid solenoid = new DoubleSolenoid(6, PneumaticsModuleType.CTREPCM, 1, 2);
-
+    private final pneumatics pnue = new pneumatics();
 
 
     final XboxController xbox = new XboxController(XBOX_CTRL_PORT);
@@ -75,34 +67,40 @@ public class RobotContainer {
         
     
 
-        m_drive.setDefaultCommand(
+        // m_drive.setDefaultCommand(
            // polarity based on normal (+) throttle
            
-            new RunCommand(
-                () -> m_drive.drive(
-                    DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
-                    DRIVE_SPEED_MULTIPLIER * TWIST_DISCOUNT * -logi.getTwist() * logi.getThrottle()
-                    ),
-                m_drive)
-            );  
+            // new RunCommand(
+            //     () -> m_drive.drive(
+            //         DRIVE_SPEED_MULTIPLIER * logi.getY() * logi.getThrottle(),
+            //         DRIVE_SPEED_MULTIPLIER * TWIST_DISCOUNT * -logi.getTwist() * logi.getThrottle()
+            //         ),
+            //     m_drive)
+            // );  
            
     }
 
     private void configureButtonBindings() {
 
         // Intake 
-        new JoystickButton(xbox, Button.kLeftBumper.value)
-             .whileHeld( new IntakeIn(intake) );
+    //     new JoystickButton(xbox, Button.kLeftBumper.value)
+    //          .whileHeld( new IntakeIn(intake) );
              
-        new JoystickButton(xbox, Button.kRightBumper.value)
-            .whileHeld( new IntakeOut(intake) );
+    //     new JoystickButton(xbox, Button.kRightBumper.value)
+    //         .whileHeld( new IntakeOut(intake) );
 
-        // Arm
-       new JoystickButton(xbox, Button.kY.value) // Y button
-            .whileHeld(new neoRunUp(Neo));
+    //     // Arm
+       new JoystickButton(xbox, Button.kX.value) // Y button
+            .whileHeld(new off(pnue));
 
        new JoystickButton(xbox, Button.kB.value)   // B button
            .whileHeld(new neoRunDown(Neo));
+        
+        new JoystickButton(xbox, Button.kA.value)
+            .whenPressed(new backward(pnue));
+
+            new JoystickButton(xbox, Button.kY.value)
+            .whenPressed(new forward(pnue));
 
         //    new JoystickButton(logi, 1) // Y button
         //    .whileHeld(new stabilizer(m_drive));

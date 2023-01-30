@@ -8,7 +8,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class neo extends SubsystemBase {
-    private final CANSparkMax neo = new CANSparkMax(4, MotorType.kBrushless);
+    private final CANSparkMax neo = new CANSparkMax(3, MotorType.kBrushless);
 
     public neo() {
         neo.restoreFactoryDefaults();
@@ -19,11 +19,11 @@ public class neo extends SubsystemBase {
     }
 
     public void raise() {
-        neo.set(ARM_UP_SPEED);
+        neo.set(0.5);
     }
 
     public void lower() {
-        neo.set(-ARM_DOWN_SPEED);
+        neo.set(-0.5);
     }
 
     public void stop() {
